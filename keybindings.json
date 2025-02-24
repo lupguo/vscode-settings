@@ -1,0 +1,251 @@
+// // Place your key bindings in this file to override the defaultsauto[]
+// LupingGuo BindKeyings 2025.02.24
+
+[
+  // -------------------- Part1: 系统配置 --------------------
+  // Cmd+D 复制当前选择内容
+  {
+    "key": "cmd+d",
+    "command": "editor.action.duplicateSelection"
+  },
+  // Alt+上箭头 执行 Extend Selection
+  {
+    "key": "alt+up",
+    "command": "editor.action.smartSelect.expand"
+  },
+
+  // Alt+下箭头 执行 Shrink Selection
+  {
+    "key": "alt+down",
+    "command": "editor.action.smartSelect.shrink"
+  },
+
+  // Cmd+向上 将当前行上移一行
+  {
+    "key": "cmd+up",
+    "command": "editor.action.moveLinesUpAction",
+    "when": "editorTextFocus && editorLangId == 'markdown'"
+  },
+
+  // Cmd+向下 将当前行下移一行
+  {
+    "key": "cmd+down",
+    "command": "editor.action.moveLinesDownAction"
+  },
+
+  // Cmd+R 搜索并替换
+  {
+    "key": "cmd+r",
+    "command": "editor.action.startFindReplaceAction"
+  },
+
+  // Shift+F2 重命名
+  {
+    "key": "shift+f2",
+    "command": "renameFile"
+  },
+
+  // Cmd+Shift+F 对当前文件执行格式化
+  {
+    "key": "cmd+shift+f",
+    "command": "editor.action.formatDocument"
+  },
+
+  // Ctrl+Shift+F 在指定的文件夹搜索内容
+  {
+    "key": "ctrl+shift+f",
+    "command": "workbench.action.findInFiles"
+  },
+
+  // Ctrl+Shift+R 在指定的文件夹搜索内容
+  {
+    "key": "ctrl+shift+r",
+    "command": "workbench.action.replaceInFiles"
+  },
+
+  // Ctrl+K 删除右侧文本
+  {
+    "key": "ctrl+k",
+    "command": "deleteAllRight"
+  },
+
+  // Cmd+Del 删除整行
+  {
+    "key": "cmd+backspace",
+    "command": "runCommands",
+    "args": {
+      "commands": [
+        { "command": "extension.vim_escape" }, // 切换到 Normal 模式
+        { "command": "type", "args": { "text": "d" } }, // 删除
+        { "command": "type", "args": { "text": "d" } } // 删除
+      ]
+    },
+    "when": "editorTextFocus && editorLangId == 'markdown' && vim.active"
+  },
+
+  // -------------------- Part2: Markdown 配置 -------------
+
+  // Cmd+1 到 Cmd+5 输入 # 到 #####
+  // Alt+Cmd+1 输入 #
+  {
+    "key": "alt+cmd+1",
+    "command": "runCommands",
+    "args": {
+      "commands": [
+        { "command": "extension.vim_escape" }, // 切换到 Normal 模式
+        { "command": "type", "args": { "text": "0" } }, // 移动到行首
+        { "command": "extension.vim_insert" }, // 切换到 Insert 模式
+        { "command": "type", "args": { "text": "# " } } // 输入 # 和空格
+      ]
+    },
+    "when": "editorTextFocus && editorLangId == 'markdown' && vim.active" // 光标焦点在编辑器的文本区域 && 你正在编辑一个 Markdown 文件（.md） && Vim 插件处于激活状态
+  },
+
+  // Alt+Cmd+2 输入 ##
+  {
+    "key": "alt+cmd+2",
+    "command": "runCommands",
+    "args": {
+      "commands": [{ "command": "extension.vim_escape" }, { "command": "type", "args": { "text": "0" } }, { "command": "extension.vim_insert" }, { "command": "type", "args": { "text": "## " } }]
+    },
+    "when": "editorTextFocus && editorLangId == 'markdown' && vim.active"
+  },
+
+  // Alt+Cmd+3 输入 ###
+  {
+    "key": "alt+cmd+3",
+    "command": "runCommands",
+    "args": {
+      "commands": [{ "command": "extension.vim_escape" }, { "command": "type", "args": { "text": "0" } }, { "command": "extension.vim_insert" }, { "command": "type", "args": { "text": "### " } }]
+    },
+    "when": "editorTextFocus && editorLangId == 'markdown' && vim.active"
+  },
+
+  // Alt+Cmd+4 输入 ####
+  {
+    "key": "alt+cmd+4",
+    "command": "runCommands",
+    "args": {
+      "commands": [{ "command": "extension.vim_escape" }, { "command": "type", "args": { "text": "0" } }, { "command": "extension.vim_insert" }, { "command": "type", "args": { "text": "#### " } }]
+    },
+    "when": "editorTextFocus && editorLangId == 'markdown' && vim.active"
+  },
+
+  // Alt+Cmd+5 输入 #####
+  {
+    "key": "alt+cmd+5",
+    "command": "runCommands",
+    "args": {
+      "commands": [{ "command": "extension.vim_escape" }, { "command": "type", "args": { "text": "0" } }, { "command": "extension.vim_insert" }, { "command": "type", "args": { "text": "##### " } }]
+    },
+    "when": "editorTextFocus && editorLangId == 'markdown' && vim.active"
+  },
+
+  // Alt+Cmd+0 清除行首的所有 #
+  {
+    "key": "alt+cmd+0",
+    "command": "runCommands",
+    "args": {
+      "commands": [
+        { "command": "extension.vim_escape" }, // 切换到 Normal 模式
+        { "command": "type", "args": { "text": "0" } }, // 移动到行首
+        { "command": "type", "args": { "text": "d" } }, // 删除到第一个空格
+        { "command": "type", "args": { "text": "W" } } // 删除
+      ]
+    },
+    "when": "editorTextFocus && editorLangId == 'markdown' && vim.active"
+  },
+
+  // Cmd+B 加粗
+  {
+    "key": "cmd+b",
+    "command": "markdown.extension.editing.toggleBold",
+    "when": "editorTextFocus && editorLangId == 'markdown'"
+  },
+
+  // Cmd+E 或 Cmd+K 输入代码（单行 `code`）
+  {
+    "key": "cmd+e",
+    "command": "markdown.extension.editing.toggleCodeSpan",
+    "when": "editorTextFocus && editorLangId == 'markdown'"
+  },
+  {
+    "key": "cmd+k",
+    "command": "markdown.extension.editing.toggleCodeSpan",
+    "when": "editorTextFocus && editorLangId == 'markdown'"
+  },
+
+  // Cmd+Shift+K 输入代码块（```）
+  {
+    "key": "cmd+shift+k",
+    "command": "markdown.extension.editing.toggleCodeBlock",
+    "when": "editorTextFocus && editorLangId == 'markdown'"
+  },
+
+  // Cmd+I 斜体
+  {
+    "key": "cmd+i",
+    "command": "markdown.extension.editing.toggleItalic",
+    "when": "editorTextFocus && editorLangId == 'markdown'"
+  },
+
+  // Cmd+D 复制当前选择内容
+  {
+    "key": "cmd+d",
+    "command": "editor.action.duplicateSelection",
+    "when": "editorTextFocus && editorLangId == 'markdown'"
+  },
+
+  // Cmd+L 增加链接
+  {
+    "key": "cmd+l",
+    "command": "markdown.extension.insertLink",
+    "when": "editorTextFocus && editorLangId == 'markdown'"
+  },
+
+  // Cmd+Shift+X 增加删除线
+  {
+    "key": "cmd+shift+x",
+    "command": "markdown.extension.editing.toggleStrikethrough",
+    "when": "editorTextFocus && editorLangId == 'markdown'"
+  },
+
+  // Cmd+Shift+I 增加无序列表
+  {
+    "key": "cmd+shift+l",
+    "command": "markdown.extension.checkTaskList",
+    "when": "editorTextFocus && editorLangId == 'markdown'"
+  },
+
+  // Cmd+Shift+U 增加有序列表
+  {
+    "key": "cmd+shift+u",
+    "command": "markdown.extension.editing.toggleList",
+    "when": "editorTextFocus && editorLangId == 'markdown'"
+  },
+
+  // Alt+Cmd+U 对Toc内容排序
+  {
+    "key": "alt+cmd+u",
+    "command": "markdown.extension.toc.addSecNumbers"
+  },
+ 
+  // Shift+Alt+Cmd+U 对Toc内容移除排序
+  {
+    "key": "shift+alt+cmd+u",
+    "command": "markdown.extension.toc.removeSecNumbers"
+  },
+
+  // -------------------- Part Last: 删除冲突按键 --------------------
+  // 删除
+  {
+    "key": "shift+cmd+i",
+    "command": "-workbench.action.chat.openEditSession",
+    "when": "chatEditingParticipantRegistered && view != 'workbench.panel.chat.view.edits'"
+  },
+  {
+    "key": "shift+cmd+i",
+    "command": "-workbench.panel.chatEditing",
+    "when": "workbench.panel.chat.view.edits.active"
+  }
+]
