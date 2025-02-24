@@ -1,6 +1,12 @@
 # vscode-vim-settings
 vscode基于vim的相关配置快捷键
 
+## 背景
+
+最近VSCode重装后，之前的配置失效，索性重新按自己习惯配置了下快捷，尽可能让在写MD文档时候能改兼容参见的快捷键操作！
+
+文档记录了配置和调试的最终结果，后续有Keybindsing更新再做同步！
+
 ## 扩展配置
 
 1. Manage -> Keyboard ShortCuts[Ctrl+K Ctrl+S] -> 右上角`...`打开
