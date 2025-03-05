@@ -259,5 +259,11 @@
     "key": "shift+cmd+a",
     "command": "-notification.acceptPrimaryAction",
     "when": "notificationFocus || notificationToastsVisible"
-  }
+  },  
+  // Terminal开关
+  {
+    "key": "ctrl+`",
+    "command": "workbench.action.terminal.toggleTerminal",
+    "isAIItem": false
+  },
 ]
