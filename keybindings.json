@@ -83,6 +83,13 @@
     "when": "editorTextFocus && editorLangId == 'markdown' && vim.active"
   },
 
+  // VSCode Rename Symbol（同步更新文档名） 
+  {
+    "key": "shift+f2",
+    "command": "editor.action.rename",
+    "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+  },
+
   // -------------------- Part2: 控制台 --------------------
   // Shift+Cmd+A 快捷控制操作
   {
