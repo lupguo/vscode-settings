@@ -3,10 +3,11 @@
 
 [
 	// -------------------- Part1: Editor编辑器 --------------------
-	// Cmd+D 复制当前选择内容
+	// cmd+d 复制当前选择内容
 	{
 		"key": "cmd+d",
-		"command": "editor.action.duplicateSelection"
+		"command": "editor.action.duplicateSelection",
+		"when": "editorTextFocus"
 	},
 	// Alt+上箭头 执行 Extend Selection
 	{
@@ -20,19 +21,19 @@
 		"command": "editor.action.smartSelect.shrink"
 	},
 
-	// Cmd+向上 将当前行上移一行
+	// cmd+向上 将当前行上移一行
 	{
 		"key": "cmd+up",
 		"command": "editor.action.moveLinesUpAction"
 	},
 
-	// Cmd+向下 将当前行下移一行
+	// cmd+向下 将当前行下移一行
 	{
 		"key": "cmd+down",
 		"command": "editor.action.moveLinesDownAction"
 	},
 
-	// Cmd+R 搜索并替换
+	// cmd+R 搜索并替换
 	{
 		"key": "cmd+r",
 		"command": "editor.action.startFindReplaceAction"
@@ -44,7 +45,7 @@
 		"command": "renameFile"
 	},
 
-	// Cmd+Shift+F 对当前文件执行格式化
+	// cmd+Shift+F 对当前文件执行格式化
 	{
 		"key": "cmd+shift+f",
 		"command": "editor.action.formatDocument"
@@ -68,7 +69,7 @@
 		"command": "deleteAllRight"
 	},
 
-	// Cmd+Del 删除整行
+	// cmd+Del 删除整行
 	{
 		"key": "cmd+backspace",
 		"command": "editor.action.deleteLines"
@@ -93,38 +94,92 @@
 		"key": "ctrl+f",
 		"command": "cursorRight"
 	},
+	// 历史位置回溯：后退
+	{
+		"key": "cmd+[",
+		"command": "workbench.action.navigateBack"
+	},
+	// 历史位置回溯：前进 (建议配套设置)
+	{
+		"key": "cmd+]",
+		"command": "workbench.action.navigateForward"
+	},
 
-	// -------------------- Part2: 控制台 --------------------
+	// -------------------- Part2: 工作台 --------------------
 	// Shift+Cmd+A 快捷控制操作
 	{
 		"key": "shift+cmd+a",
 		"command": "workbench.action.showCommands"
 	},
+	// 快速打开检索文件列表
+	{
+		"key": "cmd+e",
+		"command": "workbench.action.quickOpen"
+	},
+	// ctrl+` 面板打开&隐藏
+	{
+		"key": "ctrl+`",
+		"command": "workbench.action.togglePanel"
+	},
+	// ctrl+` 左侧Sidebar面板打开&隐藏
+	{
+		"key": "cmd+1",
+		"command": "workbench.action.toggleSidebarVisibility"
+	},
+	// cmd+n 左侧Sidebar面板区域新建文件
+	{
+		"key": "cmd+n",
+		"command": "explorer.newFile",
+		"when": "filesExplorerFocus && !inputFocus"
+	},
+	// cmd+del 删除文件
+	{
+		"key": "cmd+backspace",
+		"command": "deleteFile",
+		"when": "filesExplorerFocus && !inputFocus"
+	},
+	// 文件 diff，和Jetbrains对齐
+	{
+		"key": "cmd+d",
+		"command": "git.openChange",
+		"when": "filesExplorerFocus && !inputFocus"
+	},
+	// Markdown预览
+	{
+		"key": "cmd+p",
+		"command": "markdown-preview-enhanced.openPreviewToTheSide",
+		"when": "editorLangId == 'markdown'"
+	},
 
 	// -------------------- Part3: Terminal区域控制 --------------------
-	// CMD+D 分栏
+	// cmd+d 分栏
 	{
 		"key": "cmd+d",
 		"command": "workbench.action.terminal.split",
 		"when": "terminalFocus && terminalProcessSupported || terminalFocus && terminalWebExtensionContributedProfile"
 	},
-	// CMD+W 关闭
+	// cmd+w 关闭
 	{
 		"key": "cmd+w",
 		"command": "workbench.action.terminal.kill",
 		"when": "terminalFocus && terminalProcessSupported || terminalFocus && terminalWebExtensionContributedProfile"
 	},
-	// CMD+N 新创建一个
+	// cmd+n 新创建一个Terminal
 	{
 		"key": "cmd+n",
 		"command": "workbench.action.terminal.new",
 		"when": "terminalFocus && terminalProcessSupported || terminalFocus && terminalWebExtensionContributedProfile"
 	},
-	
+	// cmd+r 清理屏幕
+	{
+		"key": "cmd+r",
+		"command": "workbench.action.terminal.clear",
+		"when": "terminalFocus && terminalHasBeenCreated && !accessibilityModeEnabled || terminalFocus && terminalProcessSupported && !accessibilityModeEnabled || accessibilityModeEnabled && accessibleViewIsShown && terminalHasBeenCreated && accessibleViewCurrentProviderId == 'terminal' || accessibilityModeEnabled && accessibleViewIsShown && terminalProcessSupported && accessibleViewCurrentProviderId == 'terminal'"
+	},
 
 	// -------------------- Part4: Markdown 配置 -------------
 
-	// Cmd+1 到 Cmd+5 输入 # 到 #####
+	// cmd+1 到 Cmd+5 输入 # 到 #####
 	// Alt+Cmd+1 输入 #
 	{
 		"key": "alt+cmd+1",
@@ -185,68 +240,68 @@
 		"when": "editorTextFocus && editorLangId == 'markdown'"
 	},
 
-	// Cmd+B 加粗
+	// cmd+B 加粗
 	{
 		"key": "cmd+b",
 		"command": "markdown.extension.editing.toggleBold",
 		"when": "editorTextFocus && editorLangId == 'markdown'"
 	},
 
-	// Cmd+E 或 Cmd+K 输入代码（单行 `code`）
-	{
-		"key": "cmd+e",
-		"command": "markdown.extension.editing.toggleCodeSpan",
-		"when": "editorTextFocus && editorLangId == 'markdown'"
-	},
+	// cmd+E 或 Cmd+K 输入代码（单行 `code`）
+	// {
+	// 	"key": "cmd+e",
+	// 	"command": "markdown.extension.editing.toggleCodeSpan",
+	// 	"when": "editorTextFocus && editorLangId == 'markdown'"
+	// },
 	{
 		"key": "cmd+k",
 		"command": "markdown.extension.editing.toggleCodeSpan",
 		"when": "editorTextFocus && editorLangId == 'markdown'"
 	},
 
-	// Cmd+Shift+K 输入代码块（```）
+	// cmd+Shift+K 输入代码块（```）
 	{
 		"key": "cmd+shift+k",
 		"command": "markdown.extension.editing.toggleCodeBlock",
 		"when": "editorTextFocus && editorLangId == 'markdown'"
 	},
 
-	// Cmd+I 斜体
+	// cmd+I 斜体
 	{
 		"key": "cmd+i",
 		"command": "markdown.extension.editing.toggleItalic",
 		"when": "editorTextFocus && editorLangId == 'markdown'"
 	},
 
-	// Cmd+D 复制当前选择内容
+	// cmd+d 复制当前选择内容
 	{
 		"key": "cmd+d",
 		"command": "editor.action.duplicateSelection",
 		"when": "editorTextFocus && editorLangId == 'markdown'"
 	},
 
-	// Cmd+L 增加链接
+	// cmd+L 增加链接
 	{
 		"key": "cmd+l",
 		"command": "markdown.extension.insertLink",
 		"when": "editorTextFocus && editorLangId == 'markdown'"
 	},
 
-	// Cmd+Shift+X 增加删除线
+	// cmd+Shift+X 增加删除线
 	{
 		"key": "cmd+shift+x",
 		"command": "markdown.extension.editing.toggleStrikethrough",
 		"when": "editorTextFocus && editorLangId == 'markdown'"
 	},
 
-	// Cmd+Shift+I 增加无序列表
+	// cmd+Shift+I 增加无序列表
 	{
 		"key": "cmd+shift+l",
 		"command": "markdown.extension.checkTaskList",
 		"when": "editorTextFocus && editorLangId == 'markdown'"
 	},
 
-	// Cmd+Shift+U 增加有序列表
+	// cmd+Shift+U 增加有序列表
 	{
 		"key": "cmd+shift+u",
 		"command": "markdown.extension.editing.toggleList",
@@ -278,11 +333,14 @@
 		"when": "workbench.panel.chat.view.edits.active"
 	},
 	{
+		"key": "cmd+p",
+		"command": "-workbench.action.quickOpen"
+	},
+	{
 		"key": "shift+cmd+a",
 		"command": "-notification.acceptPrimaryAction",
 		"when": "notificationFocus || notificationToastsVisible"
 	},
-	// Terminal开关
 	{
 		"key": "shift+f2",
 		"command": "editor.action.rename",
