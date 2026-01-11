@@ -144,12 +144,21 @@
 		"command": "git.openChange",
 		"when": "filesExplorerFocus && !inputFocus"
 	},
+	{
+		"key": "cmd+shift+d",
+		"command": "compareSelected",
+		"when": "filesExplorerFocus && !inputFocus"
+	},
 	// Markdown预览
 	{
 		"key": "cmd+p",
 		"command": "markdown-preview-enhanced.openPreviewToTheSide",
 		"when": "editorLangId == 'markdown'"
 	},
+	{
+		"key": "alt+w",
+		"command": "revealInExplorer"
+	  }
 
 	// -------------------- Part3: Terminal区域控制 --------------------
 	// cmd+d 分栏
